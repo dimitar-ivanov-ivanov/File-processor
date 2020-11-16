@@ -123,6 +123,7 @@ public class FileManager implements Manager {
     public String writeToFile() {
         String result;
         List<String> linesToList = Arrays.stream(lines)
+                .filter(line -> line != null)
                 .map(line -> String.join(" ", line))
                 .collect(Collectors.toList());
 
@@ -135,6 +136,23 @@ public class FileManager implements Manager {
         }
 
         return result;
+    }
+
+    /**
+     * Delete a row in the file at a given index.
+     *
+     * @param rowIndex the index of the row to delete
+     * @return message for successfull execution
+     */
+    @Override
+    public String deleteRowInFile(int rowIndex) {
+
+        for (int i = rowIndex; i < lines.length - 1; i++) {
+            lines[i] = lines[i + 1];
+        }
+
+        lines[lines.length - 1] = null;
+        return OutputMessages.DELETE_ROW_SUCCESS;
     }
 }
 

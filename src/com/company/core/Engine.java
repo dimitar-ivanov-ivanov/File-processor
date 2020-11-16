@@ -43,7 +43,8 @@ public class Engine implements Runnable {
      * Add the valid commands to the list
      */
     private void seedCommands() {
-        Collections.addAll(validCommands, "switchLine", "switchWord", "end");
+        Collections.addAll(validCommands,
+                "switchLine", "switchWord", "deleteRow", "end");
     }
 
     /**
@@ -65,8 +66,13 @@ public class Engine implements Runnable {
 
             if (validCommands.contains(commandName)) {
                 Executable executable = interpreter.interpret(args, commandName);
-                String result = executable.execute();
-                System.out.println(result);
+
+                try {
+                    String result = executable.execute();
+                    System.out.println(result);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println(e.getMessage());
+                }
 
                 if (commandName.equals(OutputMessages.END_INPUT)) {
                     break;

@@ -11,4 +11,7 @@ public class OutputMessages {
     public static final String WRITE_FILE_SUCCESS = "Successfully written in file";
 
     public static final String WRITE_FILE_FAIL = "Failed to write in file";
+
+    public static final String DELETE_ROW_SUCCESS = "Successfully deleted row in file";
+
 }

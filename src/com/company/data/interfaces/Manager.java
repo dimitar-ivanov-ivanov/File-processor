@@ -36,4 +36,9 @@ public interface Manager {
      * Read from file.
      */
     void readFromFile();
+
+    /**
+     * Delete row in the file.
+     */
+    String deleteRowInFile(int rowIndex);
 }
